@@ -1,5 +1,6 @@
 import Mail from "../assets/svg/Mail";
 import Lock from "../assets/svg/Lock";
+import { Link } from "react-router-dom";
 
 function SignIn() {
   return (
@@ -29,16 +30,19 @@ function SignIn() {
           </div>
 
           <button
-            className="bg-[#60A5FA] text-[#1F2937] p-2 rounded-xl font-bold text-base md:text-lg 2xl:text-xl"
+            className="bg-[#60A5FA] text-[#1F2937] p-2 rounded-xl font-bold text-base md:text-lg 2xl:text-xl cursor-pointer hover:bg-[#2563EB] duration-500"
             type="submit"
           >
             Iniciar Sesión
           </button>
 
-          <p className="text-white font-bold text-sm md:text-base">
+          <Link
+            to="/signup"
+            className="text-white font-bold text-sm md:text-base cursor-pointer"
+          >
             No tienes cuenta?
             <span className="text-[#60A5FA]"> Regístrate aquí</span>
-          </p>
+          </Link>
         </form>
       </div>
     </div>

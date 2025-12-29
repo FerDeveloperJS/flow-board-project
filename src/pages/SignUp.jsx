@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient.js";
 import Person from "../assets/svg/Person";
 import Mail from "../assets/svg/Mail";
 import Lock from "../assets/svg/Lock";
+import { Link } from "react-router-dom";
 import Notification from "../components/Notification.jsx";
 
 import { useState } from "react";
@@ -81,16 +82,19 @@ function SignUp() {
           </div>
 
           <button
-            className="bg-[#60A5FA] text-[#1F2937] p-2 rounded-xl font-bold text-base md:text-lg 2xl:text-xl"
+            className="bg-[#60A5FA] text-[#1F2937] p-2 rounded-xl font-bold text-base md:text-lg 2xl:text-xl cursor-pointer hover:bg-[#2563EB] duration-500"
             type="submit"
           >
             Registrarse
           </button>
 
-          <p className="text-white font-bold text-sm md:text-base">
+          <Link
+            to="/"
+            className="text-white font-bold text-sm md:text-base cursor-pointer"
+          >
             Ya tienes cuenta?
             <span className="text-[#60A5FA]"> Inicia Sesión aquí</span>
-          </p>
+          </Link>
         </form>
       </div>
     </div>

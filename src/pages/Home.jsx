@@ -3,7 +3,7 @@ import Profile from "../assets/svg/Profile";
 import Plus from "../assets/svg/Plus";
 import ProfileMenu from "../components/ProfileMenu";
 
-function Dashboard() {
+function Home() {
   const [profileMenu, setProfileMenu] = useState(false);
   return (
     <div className="p-2.5 h-screen bg-[#E9E9E9]">
@@ -30,4 +30,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Home;
