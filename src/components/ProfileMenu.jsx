@@ -4,7 +4,7 @@ import Exit from "../assets/svg/Exit";
 
 function ProfileMenu({ setProfileMenu }) {
   return (
-    <div className="absolute top-0 left-0 h-screen bg-white p-4">
+    <div className="absolute top-0 left-0 h-screen bg-white p-4 z-10">
       <Close setProfileMenu={setProfileMenu} />
       <div className="flex flex-col gap-5 items-start mt-10">
         <button className="text-base md:text-lg 2xl:text-xl flex gap-2.5 items-center justify-center">
