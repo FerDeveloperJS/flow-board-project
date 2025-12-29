@@ -15,20 +15,16 @@ import { motion, AnimatePresence } from "motion/react";
 function Board() {
   const [menu, setMenu] = useState(false);
   const [popUpCollaborators, setPopUpCollaborators] = useState(false);
-  const [popUp, setPopUp] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
 
   return (
     <div className="p-2.5 h-screen bg-[#E9E9E9]">
-      {popUp && <PopUp />}
+      {popUpCollaborators && <PopUp />}
       {profileMenu && <ProfileMenu setProfileMenu={setProfileMenu} />}
 
       {menu === false && <Burger setMenu={setMenu} />}
       {popUpCollaborators && (
-        <PopUpCollaborators
-          setPopUpCollaborators={setPopUpCollaborators}
-          setPopUp={setPopUp}
-        />
+        <PopUpCollaborators setPopUpCollaborators={setPopUpCollaborators} />
       )}
       <AnimatePresence>
         {menu && (
@@ -49,7 +45,6 @@ function Board() {
                   className="flex gap-2.5 items-center text-base md:text-lg 2xl:text-xl text-[#1F2937] font-medium cursor-pointer"
                   onClick={() => {
                     setPopUpCollaborators(true);
-                    setPopUp(true);
                   }}
                 >
                   <Collaborators />
