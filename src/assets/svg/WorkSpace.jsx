@@ -2,10 +2,10 @@ function WorkSpace() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-person-workspace"
+      width="25"
+      height="25"
+      fill="#fff"
+      className="bi bi-person-workspace lg:w-10 lg:h-10"
       viewBox="0 0 16 16"
     >
       <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />

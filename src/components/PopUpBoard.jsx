@@ -5,7 +5,7 @@ import Pencil from "../assets/svg/Pencil";
 
 import Notification from "./Notification";
 
-function PopUpBoard({ setPopUpBoard }) {
+function PopUpBoard({ setPopUpBoard, fetchBoards }) {
   const [boardName, setBoardName] = useState("");
   const [notification, setNotification] = useState(null);
 
@@ -37,6 +37,8 @@ function PopUpBoard({ setPopUpBoard }) {
         type: "success",
         message: "Tablero agregado con exito...",
       });
+
+      fetchBoards();
     }
 
     setTimeout(() => {

@@ -1,20 +1,55 @@
-import { useState } from "react";
+import { supabase } from "../supabaseClient.js";
+
+import { useState, useEffect } from "react";
+
 import Profile from "../assets/svg/Profile";
 import Plus from "../assets/svg/Plus";
 import ProfileMenu from "../components/ProfileMenu";
 import PopUpBoard from "../components/PopUpBoard";
 import PopUp from "../components/PopUp";
+import BoardCard from "../components/BoardCard";
 
 import { motion } from "motion/react";
 
 function Home() {
   const [profileMenu, setProfileMenu] = useState(false);
   const [popUpBoard, setPopUpBoard] = useState(false);
+  const [boards, setBoards] = useState([]);
+
+  async function fetchBoards() {
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      console.error("No hay usuario", userError);
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("boards")
+      .select("id, name, created_at")
+      .eq("owner_id", user.id)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error trayendo boards:", error);
+    } else {
+      setBoards(data);
+    }
+  }
+
+  useEffect(() => {
+    fetchBoards();
+  }, []);
 
   return (
     <div className="p-2.5 h-screen bg-[#E9E9E9] overflow-x-hidden">
       {popUpBoard && <PopUp />}
-      {popUpBoard && <PopUpBoard setPopUpBoard={setPopUpBoard} />}
+      {popUpBoard && (
+        <PopUpBoard setPopUpBoard={setPopUpBoard} fetchBoards={fetchBoards} />
+      )}
 
       <Profile setProfileMenu={setProfileMenu} />
       {profileMenu && <ProfileMenu setProfileMenu={setProfileMenu} />}
@@ -42,9 +77,18 @@ function Home() {
         <h2 className="text-lg md:text-xl lx:text-2xl 2xl:text-3xl font-black text-center mt-10">
           Mis tableros
         </h2>
-        <p className="text-center mt-5 text-base md:text-lg 2xl:text-xl">
-          Aún no tienes tableros...
-        </p>
+
+        <div className="mt-10 flex gap-10 w-fit mx-auto">
+          {boards.length === 0 ? (
+            <p className="text-center text-gray-500">
+              Aún no tienes tableros...
+            </p>
+          ) : (
+            boards.map((board) => (
+              <BoardCard key={board.id} boardName={board.name} />
+            ))
+          )}
+        </div>
       </section>
     </div>
   );
